@@ -9,7 +9,7 @@ public class PlayerMotor : MonoValidate, IRefreshable
 {
     [SerializeField] Rigidbody rb;
     [SerializeField] float speed = 10f;
-    [SerializeField] new Collider collider;
+    [SerializeField] new Collider[] colliders;
 
     bool withAim = false;
 
@@ -17,15 +17,18 @@ public class PlayerMotor : MonoValidate, IRefreshable
     public Vector3 Position => transform.position;
     public Rigidbody Rb => this.rb;
 
-    public void SetEnabledCollider(bool State) => this.collider.enabled = State;
+    public void SetEnabledCollider(bool state)
+    { foreach (var col in this.colliders) col.enabled = state; }
     public void SetRigidbodyKinematic(bool state) => this.rb.isKinematic = state;
 
     protected override void OnValidate()
     {
         base.OnValidate();
         ValidateGetComponent(ref this.rb);
-        ValidateGetComponent(ref this.collider);
     }
+
+    [ContextMenu("Get colliders")]
+    void GetColliders() => this.colliders = GetComponentsInChildren<Collider>();
 
     public void Move(Vector2 dir)
     {

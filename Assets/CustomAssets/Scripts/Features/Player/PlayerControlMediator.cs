@@ -32,13 +32,13 @@ public class PlayerControlMediator : MonoSingleton<PlayerControlMediator>
             if (!isActive) return;
             Debug.LogWarning($"DirectionalShoot {dir}");
             PlayerController.I.Player.Combat.Shoot(dir);
-            PlayerController.I.Player.View.SetAim(false, false);
+            //PlayerController.I.Player.View.SetAim(false, false);
             PlayerController.I.Player.Motor.SetAimRotation(false);
         };
         this.userControl.OnDirectionalAim += dir =>
         {
             if (!isActive) return;
-            PlayerController.I.Player.View.SetAim(true, false);
+            //PlayerController.I.Player.View.SetAim(true, false);
             PlayerController.I.Player.Motor.SetAimRotation(dir);
         };
         //this.userControl.OnShoot += () =>
