@@ -11,19 +11,19 @@ using MyTools.Helpers;
 public class MainMenuUI : UIBase
 {
     public event Action OnPlayPressed = delegate { };
-    public event Action OnJoinPressed = delegate { };
+    public event Action OnInfoPressed = delegate { };
     public event Action OnQuitPressed = delegate { };
 
 #pragma warning disable 649
     [SerializeField] Button playBtn;
-    [SerializeField] Button joinBtn;
+    [SerializeField] Button infoBtn;
     [SerializeField] Button quitBtn;
 #pragma warning restore 649
 
     void Awake()
     {
-        playBtn.onClick.AddListener(() => OnPlayPressed());
-        joinBtn.onClick.AddListener(() => OnJoinPressed());
-        quitBtn.onClick.AddListener(() => OnQuitPressed());
+        this.playBtn.onClick.AddListener(() => OnPlayPressed());
+        this.infoBtn.onClick.AddListener(() => OnInfoPressed());
+        this.quitBtn.onClick.AddListener(() => OnQuitPressed());
     }
 }

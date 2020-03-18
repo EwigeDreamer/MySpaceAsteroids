@@ -7,18 +7,18 @@ using MyTools.Extensions.GameObjects;
 
 public class Player : MonoValidate
 {
+#pragma warning disable 649
     [SerializeField] PlayerView view;
     [SerializeField] PlayerMotor motor;
     [SerializeField] PlayerCombat combat;
-    [SerializeField] new PlayerCamera camera;
-    [SerializeField] CharacterStatusBar statusBar;
     [SerializeField] PlayerHealth health;
+#pragma warning restore 649
 
+    List<IRefreshable> refreshables = new List<IRefreshable>();
 
     public PlayerView View => this.view;
     public PlayerMotor Motor => this.motor;
     public PlayerCombat Combat => this.combat;
-    public PlayerCamera Camera => this.camera;
     public PlayerHealth Health => this.health;
 
     protected override void OnValidate()
@@ -27,14 +27,12 @@ public class Player : MonoValidate
         ValidateGetComponent(ref this.view);
         ValidateGetComponent(ref this.motor);
         ValidateGetComponent(ref this.combat);
-        ValidateGetComponent(ref this.camera);
         ValidateGetComponent(ref this.health);
-        ValidateGetComponent(ref this.statusBar);
     }
 
     private void Awake()
     {
-        this.camera.SetActiveCamera(false);
+        GetComponentsInChildren(this.refreshables);
         this.health.OnDead += () =>
         {
             motor.SetEnabledCollider(false);
@@ -42,22 +40,9 @@ public class Player : MonoValidate
         };
     }
 
-    private void Start()
-    {
-        PlayerController.I.RegisterLocal(this);
-    }
-
-    private void OnDestroy()
-    {
-        PlayerController.I.UnregisterLocal(this);
-    }
-
 
     public void Refresh()
     {
-        view.Refresh();
-        motor.Refresh();
-        combat.Refresh();
-        camera.Refresh();
+        foreach (var refreshable in this.refreshables) refreshable.Refresh();
     }
 }

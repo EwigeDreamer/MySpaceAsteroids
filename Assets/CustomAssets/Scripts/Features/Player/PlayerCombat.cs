@@ -29,22 +29,16 @@ public class PlayerCombat : MonoValidate, IRefreshable
         ValidateGetComponent(ref this.view);
     }
 
-    private void Awake()
-    {
-        this.view.OnChangeVisible += state => weapon?.Model.SetVisible(state);
-    }
-
     public void Refresh()
     {
         if (this.currentKind == WeaponKind.Unknown) return;
         SetWeapon(this.currentKind);
-        this.weapon?.Model.SetVisible(this.view.IsVisible);
     }
 
     public void SetWeapon(WeaponKind kind)
     {
         if (this.weapon != null && this.weapon.Info.kind == kind) return;
-        this.weapon?.Dispose();
+        RemoveWeapon();
         WeaponInfo info = new WeaponInfo
         {
             owner = gameObject,
@@ -52,13 +46,18 @@ public class PlayerCombat : MonoValidate, IRefreshable
             mask = this.hitMask,
             audio = this.audio,
         };
-        this.weapon = new Weapon(this.weaponPoint, this.weaponPoint, info);
-        this.weapon.Model.SetVisible(this.view.IsVisible);
+        this.weapon = new Weapon(this.weaponPoint, info);
         OnSetWeapon(kind);
+    }
+
+    public void RemoveWeapon()
+    {
+        this.weapon?.Dispose();
+        this.weapon = null;
     }
 
     public void Shoot(Vector2 dir)
     {
-        this.weapon?.Shoot(dir.ToV3_x0y());
+        this.weapon?.Shoot();
     }
 }

@@ -28,26 +28,28 @@ public class ProjectileController : MonoSingleton<ProjectileController>
 
 #pragma warning disable 649
     [SerializeField] WeaponController weaponCtrl;
-    [SerializeField] ProjectilePrefabs projectiles;
+    IProjectileFactory factory;
 #pragma warning restore 649
 
     protected override void OnValidate()
     {
         base.OnValidate();
-        ValidateFind(ref weaponCtrl);
+        ValidateFind(ref this.weaponCtrl);
     }
 
     protected override void Awake()
     {
         base.Awake();
-        weaponCtrl.OnShoot += CreateProjectile;
+        ValidateGetComponent(ref this.factory);
+        this.weaponCtrl.OnShoot += CreateProjectile;
     }
 
     private void CreateProjectile(WeaponInfo wInfo, Vector3 pos, Vector3 dir)
     {
         var pKind = WeaponStaticData.WeaponProjectileBindData[wInfo.kind];
-        var proj = Instantiate(projectiles.ProjectilePrefabDict[pKind], pos, Quaternion.LookRotation(dir));
-        //NetworkServer.Spawn(proj.gameObject);
+        var proj = this.factory.GetObject(pKind);
+        proj.TR.position = pos;
+        proj.TR.rotation = Quaternion.LookRotation(dir);
         Subscribe(proj);
         proj.Init(wInfo, pKind, pos, dir);
         OnShoot(proj.Info, new PointInfo { point = pos, direction = dir, normal = dir });

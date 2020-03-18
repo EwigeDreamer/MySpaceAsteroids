@@ -45,19 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_OverrideSingleton: 1
-  m_MakeDontDestroy: 1
-  manager: {fileID: 0}
+  m_MakeDontDestroy: 0
   projectileCtrl: {fileID: 0}
   infoList:
   - kind: 0
-    shoot: 
-    impact: 
-  - kind: 1
-    shoot: 
-    impact: 
-  - kind: 2
-    shoot: 
-    impact: 
+    shoot: projectile_0_muzzle
+    impact: projectile_0_impact
 --- !u!114 &4539783722091721210
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,10 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5472529946392568850}
   - component: {fileID: 1019850611329990279}
-  - component: {fileID: 7441459791383029817}
-  - component: {fileID: 1869995823986529459}
   m_Layer: 0
-  m_Name: CombatControllers
+  m_Name: WeaponController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,37 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_OverrideSingleton: 1
-  m_MakeDontDestroy: 1
+  m_MakeDontDestroy: 0
   models: {fileID: 11400000, guid: fb0d480910607c94e809d6d50d126ca3, type: 2}
   hitMask:
     serializedVersion: 2
     m_Bits: 0
---- !u!114 &7441459791383029817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8031778585152591646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d67830ae4282df4b8b781a32b34f202, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OverrideSingleton: 1
-  m_MakeDontDestroy: 0
-  weaponCtrl: {fileID: 1019850611329990279}
-  projectiles: {fileID: 11400000, guid: f232a52eb444736428ae92483a29d659, type: 2}
---- !u!114 &1869995823986529459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8031778585152591646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36c517f80525de740a067c4eb7dcb33a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ProjectileCtrl: {fileID: 7441459791383029817}

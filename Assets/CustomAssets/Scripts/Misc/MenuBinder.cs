@@ -15,10 +15,8 @@ public class MenuBinder : MonoValidate
 
     private void Awake()
     {
-        //this.main.OnPlayPressed += () => CustomNetworkManager.I.StartHost();
-
-        //this.main.OnJoinPressed += () => PopupManager.OpenPopup<JoinPopup>();
-
+        this.main.OnPlayPressed += () => PopupManager.OpenPopup<ChooseLevelPopup>();
+        this.main.OnInfoPressed += () => PopupManager.OpenPopup<MessagePopup>().SetText("Created by Paul Sammler");
         this.main.OnQuitPressed += () => PopupManager.OpenPopup<QuittingPopup>();
     }
 }
