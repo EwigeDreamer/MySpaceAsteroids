@@ -33,7 +33,8 @@ public class ChooseLevelPopup : PopupBase
             stars += progress.allEnemies ? 1 : 0;
             stars += progress.noDamage ? 1 : 0;
             cell.SetStars(stars);
-            cell.StartBtn.onClick.AddListener(() => StartLevel(i));
+            int id = i;
+            cell.StartBtn.onClick.AddListener(() => StartLevel(id));
         }
 
         void StartLevel(int id)
