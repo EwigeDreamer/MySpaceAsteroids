@@ -17,6 +17,7 @@ public class MainInitializator : MonoValidate
     {
         DontDestroyItems();
         DestroyItems();
+        SetupPause();
         LoadGame();
         Destroy(gameObject);
     }
@@ -42,5 +43,11 @@ public class MainInitializator : MonoValidate
     void LoadGame()
     {
         SceneLoadingManager.FirstLoad();
+    }
+
+    void SetupPause()
+    {
+        PauseManager.OnPause += () => PopupManager.OpenPopup<PausePopup>();
+        PauseManager.PauseEnabled = false;
     }
 }

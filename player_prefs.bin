@@ -1,0 +1,20 @@
+{
+    "data": [
+        {
+            "key": "app_localization",
+            "value": "ru"
+        },
+        {
+            "key": "audio_settings",
+            "value": "{\"settings\":[{\"volume\":1.0},{\"volume\":1.0},{\"volume\":1.0},{\"volume\":1.0}]}"
+        },
+        {
+            "key": "level_progress_data",
+            "value": "{\"levels\":[{\"id\":0,\"complete\":false,\"noDamage\":false,\"allEnemies\":false},{\"id\":1,\"complete\":false,\"noDamage\":false,\"allEnemies\":false},{\"id\":2,\"complete\":false,\"noDamage\":false,\"allEnemies\":false},{\"id\":3,\"complete\":false,\"noDamage\":false,\"allEnemies\":false}]}"
+        },
+        {
+            "key": "level_preset_data",
+            "value": "{\"levels\":[{\"id\":0,\"count\":34,\"duration\":11.453673362731934},{\"id\":1,\"count\":30,\"duration\":11.086201667785645},{\"id\":2,\"count\":40,\"duration\":14.600191116333008},{\"id\":3,\"count\":35,\"duration\":13.089716911315918}]}"
+        }
+    ]
+}

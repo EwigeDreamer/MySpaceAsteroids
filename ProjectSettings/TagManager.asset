@@ -35,8 +35,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - Characters
+  - Asteroids
+  - Player
   m_SortingLayers:
   - name: Default
     uniqueID: 0
