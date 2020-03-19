@@ -22,16 +22,16 @@ public class UserControlScript : MonoValidate
 
     private void Awake()
     {
-        this.gameUI.OnMenuPressed += () => PopupManager.OpenPopup<GameMenuPopup>();
-        this.gameUI.CombatSensor.OnClick += () => OnShoot();
-        this.gameUI.CombatSensor.OnRelease += () => OnDirectionalShoot(this.gameUI.CombatSensor.LastDir);
+        //this.gameUI.OnMenuPressed += () => PopupManager.OpenPopup<GameMenuPopup>();
+        //this.gameUI.CombatSensor.OnClick += () => OnShoot();
+        //this.gameUI.CombatSensor.OnRelease += () => OnDirectionalShoot(this.gameUI.CombatSensor.LastDir);
     }
 
     private void FixedUpdate()
     {
-        var move = this.gameUI.MovementJoystick;
-        var aim = this.gameUI.CombatJoystick;
-        if (!move.Horizontal.IsVerySmall() || !move.Vertical.IsVerySmall()) OnMove(move.Direction);
-        if (!aim.Horizontal.IsVerySmall() || !aim.Vertical.IsVerySmall()) OnDirectionalAim(aim.Direction);
+        //var move = this.gameUI.MovementJoystick;
+        //var aim = this.gameUI.CombatJoystick;
+        //if (!move.Horizontal.IsVerySmall() || !move.Vertical.IsVerySmall()) OnMove(move.Direction);
+        //if (!aim.Horizontal.IsVerySmall() || !aim.Vertical.IsVerySmall()) OnDirectionalAim(aim.Direction);
     }
 }

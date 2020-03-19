@@ -92,10 +92,10 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 50
-  m_fontSizeBase: 24
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 50
   m_fontStyle: 0
@@ -193,7 +193,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 468.5, y: 128.9}
+  m_SizeDelta: {x: 230.5, y: 63.421}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3492024953602755270
 CanvasRenderer:
@@ -283,7 +283,7 @@ GameObject:
   - component: {fileID: 6204469382400251641}
   - component: {fileID: 8897266093871849796}
   m_Layer: 5
-  m_Name: ButtonJoin
+  m_Name: ButtonInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -307,7 +307,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 468.5, y: 128.9}
+  m_SizeDelta: {x: 230.5, y: 63.421}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &19644374277821142
 CanvasRenderer:
@@ -421,7 +421,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 468.5, y: 128.9}
+  m_SizeDelta: {x: 230.5, y: 63.421}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5455888611291941369
 CanvasRenderer:
@@ -782,10 +782,10 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 50
-  m_fontSizeBase: 24
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 50
   m_fontStyle: 0
@@ -938,10 +938,10 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 50
-  m_fontSizeBase: 24
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 50
   m_fontStyle: 0

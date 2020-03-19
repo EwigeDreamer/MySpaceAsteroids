@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using System;
 using MyTools.Helpers;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class GameUI : UIBase
 {
@@ -18,23 +19,23 @@ public class GameUI : UIBase
 #pragma warning disable 649
     [SerializeField] Button menuBtn;
     [SerializeField] Joystick movement;
-    [SerializeField] Joystick combat;
-    [SerializeField] CombatJoystickSensor combatSensor;
-    [SerializeField] TMP_Text killCountLabel;
+    [SerializeField] EventTrigger fireTrigger;
 
-    [SerializeField] Button pistolBtn;
-    [SerializeField] Button rifleBtn;
-    [SerializeField] Button shotgunBtn;
+    [SerializeField] GameObject[] lifePoints;
 #pragma warning restore 649
 
     public Joystick MovementJoystick => movement;
-    public Joystick CombatJoystick => combat;
-    public CombatJoystickSensor CombatSensor => combatSensor;
+    public EventTrigger FireTrigger => fireTrigger;
 
     void Awake()
     {
         menuBtn.onClick.AddListener(() => OnMenuPressed());
     }
 
-    public void SetKillCount(int count) => killCountLabel.text = count.ToString();
+    public void SetLifePoints(int value)
+    {
+        var points = this.lifePoints;
+        var count = points.Length;
+        for (int i = 0; i < count; ++i) points[i].SetActive(i < value);
+    }
 }
