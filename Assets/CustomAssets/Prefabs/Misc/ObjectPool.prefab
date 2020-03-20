@@ -86,3 +86,13 @@ MonoBehaviour:
     m_Objs: []
     m_CashedInEditor: 0
     m_PoolCount: 0
+  - m_PoolCtrl: {fileID: 1155597071128188674}
+    m_Key: asteroid
+    m_Container: {fileID: 0}
+    m_Reference: {fileID: 4209277366467435384, guid: 29bf35bd02ae8c143b09cbe16e32eff6,
+      type: 3}
+    m_Count: 10
+    m_IfPoolEmpty: 0
+    m_Objs: []
+    m_CashedInEditor: 0
+    m_PoolCount: 0

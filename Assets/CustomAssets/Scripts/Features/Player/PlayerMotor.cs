@@ -9,7 +9,7 @@ public class PlayerMotor : MonoValidate
 {
     [SerializeField] Rigidbody rb;
     [SerializeField] float speed = 10f;
-    [SerializeField] new Collider[] colliders;
+    [SerializeField] Collider[] colliders;
 
     public Vector3 NormalizedVelocity => rb.velocity / speed;
     public Vector3 Position => transform.position;

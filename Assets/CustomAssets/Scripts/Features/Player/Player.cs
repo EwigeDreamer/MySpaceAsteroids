@@ -35,11 +35,12 @@ public class Player : MonoValidate
         GetComponentsInChildren(this.refreshables);
         this.health.OnDead += () =>
         {
-            motor.SetEnabledCollider(false);
-            motor.SetRigidbodyKinematic(true);
+            this.motor.SetEnabledCollider(false);
+            this.motor.SetRigidbodyKinematic(true);
+            this.view.SetVisible(false);
+            this.combat.CanShooting = false;
         };
     }
-
 
     public void Refresh()
     {

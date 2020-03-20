@@ -32,5 +32,8 @@ public class WeaponController : MonoSingleton<WeaponController>
         weapon.OnShoot -= OnShootEvent;
     }
 
-    private void OnShootEvent(WeaponInfo info, Vector3 pos, Vector3 dir) => OnShoot(info, pos, dir);
+    private void OnShootEvent(WeaponInfo info, Vector3 pos, Vector3 dir)
+    {
+        OnShoot(info, pos, dir);
+    }
 }

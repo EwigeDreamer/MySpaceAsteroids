@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8540825033181189297}
   - component: {fileID: 5041875871272556328}
   m_Layer: 0
-  m_Name: PistolMuzzle
+  m_Name: Projectile_0_Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,7 +51,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f8a57c828108f3546ae3eb8fc2100a35, type: 2}
+  - {fileID: 2100000, guid: 2a979db0ed2778846b6e23d7ad89dbe9, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -360,7 +360,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -413,7 +413,7 @@ ParticleSystem:
     startSizeY:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.5
+      scalar: 3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -466,7 +466,7 @@ ParticleSystem:
     startSizeZ:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -1494,7 +1494,7 @@ ParticleSystem:
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
   UVModule:
-    enabled: 1
+    enabled: 0
     mode: 0
     timeMode: 0
     fps: 30

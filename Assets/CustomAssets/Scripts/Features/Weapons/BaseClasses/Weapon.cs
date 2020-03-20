@@ -18,6 +18,7 @@ public class Weapon : IDisposable
     {
         this.point = point;
         this.info = info;
+        WeaponController.I.Subscribe(this);
     }
 
     public void Dispose()
@@ -25,9 +26,6 @@ public class Weapon : IDisposable
         WeaponController.I.Unsubscribe(this);
     }
 
-    public void Shoot()
-    {
-        OnShoot(this.info, this.point.position, this.point.forward);
-    }
+    public void Shoot() => OnShoot(this.info, this.point.position, this.point.forward);
 }
 

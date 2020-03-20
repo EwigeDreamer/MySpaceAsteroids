@@ -9,22 +9,13 @@ using MyTools.Helpers;
 public class PlayerHealth : MonoValidate, IRefreshable
 {
     public event Action OnDead = delegate { };
-    public event Action<GameObject, Player> OnDeadByKiller = delegate { };
     public event Action<int, IntInfo> OnDamage = delegate { };
     public event Action<int, IntInfo> OnHeal = delegate { };
     public event Action OnReset = delegate { };
 
-    [SerializeField] Player player;
-
     [SerializeField] IntInfo hp = new IntInfo { Min = 0, Max = 100, Value = 100 };
 
     public IntInfo Hp => hp;
-
-    protected override void OnValidate()
-    {
-        base.OnValidate();
-        ValidateGetComponent(ref this.player);
-    }
 
     public void SetDamage(int damage, GameObject killer)
     {
@@ -33,7 +24,6 @@ public class PlayerHealth : MonoValidate, IRefreshable
         newHp.Value -= damage;
         SetNewHpValue(newHp);
         Debug.Log($"SET DAMAGE! damage: {damage}, isDead: {newHp.IsZero}");
-        if (newHp.IsZero) OnDeadByKiller(killer, this.player);
     }
 
     public void SetHeal(int heal)

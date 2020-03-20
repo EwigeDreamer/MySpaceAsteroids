@@ -5,10 +5,12 @@ using MyTools.Extensions.Vectors;
 using System;
 using MyTools.Extensions.GameObjects;
 using MyTools.Helpers;
+using DG.Tweening;
 
 public class PlayerCombat : MonoValidate, IRefreshable
 {
 #pragma warning disable 649
+    [SerializeField] int fireRate = 12;
     [SerializeField] PlayerView view;
     [SerializeField] Transform weaponPoint;
     [SerializeField] LayerMask hitMask;
@@ -20,6 +22,20 @@ public class PlayerCombat : MonoValidate, IRefreshable
     WeaponKind currentKind = WeaponKind.Unknown;
 
     Weapon weapon = null;
+
+    Tween shooting = null;
+
+    bool canShooting = true;
+
+    public bool CanShooting
+    {
+        get => this.canShooting;
+        set
+        {
+            this.canShooting = value;
+            if (!value) StopShooting();
+        }
+    }
 
     public WeaponKind CurrentWeapon => currentKind;
 
@@ -58,14 +74,18 @@ public class PlayerCombat : MonoValidate, IRefreshable
 
     public void StartShooting()
     {
-        Debug.LogError("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        if (!CanShooting) return;
+        this.shooting?.Kill();
+        Shoot();
+        this.shooting = DOVirtual.DelayedCall(1f / this.fireRate, Shoot).SetLoops(-1);
     }
     public void StopShooting()
     {
-        Debug.LogError("BBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+        this.shooting?.Kill();
+        this.shooting = null;
     }
 
-    public void Shoot(Vector2 dir)
+    public void Shoot()
     {
         this.weapon?.Shoot();
     }

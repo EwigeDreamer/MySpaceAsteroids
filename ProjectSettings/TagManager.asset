@@ -33,9 +33,9 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - Asteroids
+  - EnemiesBorder
+  - PlayerBorder
+  - Enemies
   - Player
   m_SortingLayers:
   - name: Default

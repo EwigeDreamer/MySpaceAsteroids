@@ -17,4 +17,9 @@ public class PlayerController : MonoSingleton<PlayerController>
     }
 
     public Player Player => this.player;
+
+    private void Start()
+    {
+        this.player.Combat.SetWeapon(WeaponKind.Gun_0);
+    }
 }
