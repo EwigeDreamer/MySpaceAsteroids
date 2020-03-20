@@ -6,10 +6,10 @@ using TMPro;
 
 public class PausePopup : PopupBase
 {
-    public event System.Action OnConfirm = delegate { };
 
 #pragma warning disable 649
     [SerializeField] Button[] returnBtns;
+    [SerializeField] Button menuBtn;
 #pragma warning restore 649
 
     protected override int SortDelta => 0;
@@ -18,6 +18,7 @@ public class PausePopup : PopupBase
     {
         base.OnInit();
         foreach (var btn in returnBtns) btn.onClick.AddListener(() => Hide(null));
+        menuBtn.onClick.AddListener(() => { GameManager.StopLevel(); Hide(null); });
     }
 
     protected override void OnRemove()

@@ -14,7 +14,7 @@
         },
         {
             "key": "level_preset_data",
-            "value": "{\"levels\":[{\"id\":0,\"count\":34,\"duration\":11.453673362731934},{\"id\":1,\"count\":30,\"duration\":11.086201667785645},{\"id\":2,\"count\":40,\"duration\":14.600191116333008},{\"id\":3,\"count\":35,\"duration\":13.089716911315918}]}"
+            "value": "{\"levels\":[{\"id\":0,\"count\":34,\"duration\":11},{\"id\":1,\"count\":30,\"duration\":11},{\"id\":2,\"count\":40,\"duration\":14},{\"id\":3,\"count\":35,\"duration\":13}]}"
         }
     ]
 }

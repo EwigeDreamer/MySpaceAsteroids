@@ -15,7 +15,7 @@ public class LevelPreset
 {
     public int id;
     public int count;
-    public float duration;
+    public int duration;
 }
 
 public static class LevelPresetData
@@ -38,7 +38,7 @@ public static class LevelPresetData
         {
             id = id,
             count = Random.Range(10, 41),
-            duration = Random.Range(10f, 20f)
+            duration = Random.Range(10, 21)
         };
     }
 

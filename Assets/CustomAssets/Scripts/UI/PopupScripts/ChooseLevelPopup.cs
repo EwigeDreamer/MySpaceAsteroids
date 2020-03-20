@@ -23,23 +23,24 @@ public class ChooseLevelPopup : PopupBase
         var count = points.Length;
         for (int i = 0; i < count; ++i)
         {
-            var preset = LevelPresetData.GetPreset(i);
-            var progress = LevelProgressData.GetProgress(i);
-            var cell = Instantiate(this.cellReference, points[i]);
-            cell.GO.SetActive(true);
-            cell.Name.text = $"Level {i}";
-            int stars = 0;
-            stars += progress.complete ? 1 : 0;
-            stars += progress.allEnemies ? 1 : 0;
-            stars += progress.noDamage ? 1 : 0;
-            cell.SetStars(stars);
             int id = i;
-            cell.StartBtn.onClick.AddListener(() => StartLevel(id));
-        }
-
-        void StartLevel(int id)
-        {
-            Debug.LogError($"START LEVEL: {id}");
+            var preset = LevelPresetData.GetPreset(id);
+            var progress = LevelProgressData.GetProgress(id);
+            var cell = Instantiate(this.cellReference, points[id]);
+            cell.GO.SetActive(true);
+            cell.Name.text = $"Level {id + 1}";
+            cell.SetStars(progress.Stars);
+            cell.StartBtn.onClick.AddListener(() => 
+            {
+                var popup = PopupManager.OpenPopup<StartLevelPopup>();
+                popup.SetDescription($"Level {id + 1}\nasteroids: {preset.count}\ntime: {preset.duration}");
+                popup.SetStars(progress.Stars);
+                popup.OnStart += () =>
+                {
+                    Hide(null);
+                    GameManager.StartLevel(id);
+                };
+            });
         }
     }
 }

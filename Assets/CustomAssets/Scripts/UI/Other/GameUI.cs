@@ -12,12 +12,14 @@ using UnityEngine.EventSystems;
 
 public class GameUI : UIBase
 {
-    public event Action OnMenuPressed = delegate { };
+    public event Action OnPauseMenuPressed = delegate { };
+    public event Action OnFireTriggerOn = delegate { };
+    public event Action OnFireTriggerOff = delegate { };
 
 
 
 #pragma warning disable 649
-    [SerializeField] Button menuBtn;
+    [SerializeField] Button pauseMenuBtn;
     [SerializeField] Joystick movement;
     [SerializeField] EventTrigger fireTrigger;
 
@@ -25,11 +27,20 @@ public class GameUI : UIBase
 #pragma warning restore 649
 
     public Joystick MovementJoystick => movement;
-    public EventTrigger FireTrigger => fireTrigger;
 
     void Awake()
     {
-        menuBtn.onClick.AddListener(() => OnMenuPressed());
+        this.pauseMenuBtn.onClick.AddListener(() => OnPauseMenuPressed());
+
+        var entryOn = new EventTrigger.Entry();
+        entryOn.eventID = EventTriggerType.PointerDown;
+        entryOn.callback.AddListener(_ => OnFireTriggerOn());
+        this.fireTrigger.triggers.Add(entryOn);
+
+        var entryOff = new EventTrigger.Entry();
+        entryOff.eventID = EventTriggerType.PointerUp;
+        entryOff.callback.AddListener(_ => OnFireTriggerOff());
+        this.fireTrigger.triggers.Add(entryOff);
     }
 
     public void SetLifePoints(int value)

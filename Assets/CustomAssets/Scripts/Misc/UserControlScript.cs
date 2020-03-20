@@ -7,10 +7,9 @@ using MyTools.ValueInfo;
 
 public class UserControlScript : MonoValidate
 {
-    public event Action OnShoot = delegate { };
-    public event Action<Vector2> OnDirectionalAim = delegate { };
-    public event Action<Vector2> OnDirectionalShoot = delegate { };
     public event Action<Vector2> OnMove = delegate { };
+    public event Action OnStartShoot = delegate { };
+    public event Action OnStopShoot = delegate { };
 
     [SerializeField] GameUI gameUI;
 
@@ -22,16 +21,13 @@ public class UserControlScript : MonoValidate
 
     private void Awake()
     {
-        //this.gameUI.OnMenuPressed += () => PopupManager.OpenPopup<GameMenuPopup>();
-        //this.gameUI.CombatSensor.OnClick += () => OnShoot();
-        //this.gameUI.CombatSensor.OnRelease += () => OnDirectionalShoot(this.gameUI.CombatSensor.LastDir);
+        this.gameUI.OnPauseMenuPressed += () => PauseManager.Pause = true;
+        this.gameUI.OnFireTriggerOn += () => OnStartShoot();
+        this.gameUI.OnFireTriggerOff += () => OnStopShoot();
     }
 
     private void FixedUpdate()
     {
-        //var move = this.gameUI.MovementJoystick;
-        //var aim = this.gameUI.CombatJoystick;
-        //if (!move.Horizontal.IsVerySmall() || !move.Vertical.IsVerySmall()) OnMove(move.Direction);
-        //if (!aim.Horizontal.IsVerySmall() || !aim.Vertical.IsVerySmall()) OnDirectionalAim(aim.Direction);
+        OnMove(this.gameUI.MovementJoystick.Direction);
     }
 }

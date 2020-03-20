@@ -56,6 +56,15 @@ public class PlayerCombat : MonoValidate, IRefreshable
         this.weapon = null;
     }
 
+    public void StartShooting()
+    {
+        Debug.LogError("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+    }
+    public void StopShooting()
+    {
+        Debug.LogError("BBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+    }
+
     public void Shoot(Vector2 dir)
     {
         this.weapon?.Shoot();

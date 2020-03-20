@@ -15,6 +15,8 @@ public class LevelProgress
     public bool complete = false;
     public bool noDamage = false;
     public bool allEnemies = false;
+
+    public int Stars => (complete ? 1 : 0) + (noDamage ? 1 : 0) + (allEnemies ? 1 : 0);
 }
 
 

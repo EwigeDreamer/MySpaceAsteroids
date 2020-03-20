@@ -22,38 +22,27 @@ public class PlayerControlMediator : MonoSingleton<PlayerControlMediator>
     protected override void Awake()
     {
         base.Awake();
-        this.userControl.OnMove += dir =>
+
+        CorouWaiter.WaitFor(() => PlayerController.I != null, Subscribe, () => this == null);
+        void Subscribe()
         {
-            if (!isActive) return;
-            PlayerController.I.Player.Motor.Move(dir);
-        };
-        this.userControl.OnDirectionalShoot += dir =>
-        {
-            if (!isActive) return;
-            Debug.LogWarning($"DirectionalShoot {dir}");
-            PlayerController.I.Player.Combat.Shoot(dir);
-            //PlayerController.I.Player.View.SetAim(false, false);
-            PlayerController.I.Player.Motor.SetAimRotation(false);
-        };
-        this.userControl.OnDirectionalAim += dir =>
-        {
-            if (!isActive) return;
-            //PlayerController.I.Player.View.SetAim(true, false);
-            PlayerController.I.Player.Motor.SetAimRotation(dir);
-        };
-        //this.userControl.OnShoot += () =>
-            //if (!isActive) return;
-            //Debug.LogWarning($"Try Shoot");
-            //var player = PlayerController.I.Player;
-            //var closest = PlayerController.I.GetClosest(player);
-            //if (closest == null) return;
-            //var dir = (closest.Motor.Position - player.Motor.Position).ToV2_xz().normalized;
-            //Debug.LogWarning($"Shoot {dir}");
-            //PlayerController.I.Player.View.SetAim(true, true);
-            //PlayerController.I.Player.Motor.SetAimRotation(dir);
-            //PlayerController.I.Player.Combat.Shoot(dir);
-            //PlayerController.I.Player.View.SetAim(false, false);
-            //PlayerController.I.Player.Motor.SetAimRotation(false);
-        //};
+            this.userControl.OnMove += dir =>
+            {
+                if (!isActive) return;
+                PlayerController.I.Player.Motor.Move(dir);
+            };
+            this.userControl.OnStartShoot += () =>
+            {
+                if (!isActive) return;
+                Debug.Log($"Start shooting");
+                PlayerController.I.Player.Combat.StartShooting();
+            };
+            this.userControl.OnStopShoot += () =>
+            {
+                if (!isActive) return;
+                Debug.Log($"Stop shooting");
+                PlayerController.I.Player.Combat.StopShooting();
+            };
+        }
     }
 }
