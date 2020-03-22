@@ -1290,6 +1290,9 @@ MonoBehaviour:
   - {fileID: 1759117418528371912}
   - {fileID: 7328880276765946895}
   startBtn: {fileID: 1162534042331888728}
+  img: {fileID: 7154068450334594483}
+  SpriteEnabled: {fileID: 21300000, guid: d50fb07502babdb4fab8072852929364, type: 3}
+  SpriteDisabled: {fileID: 21300000, guid: a7242fac2da7cbb49bb012e42cefd60b, type: 3}
 --- !u!222 &3194192789082675590
 CanvasRenderer:
   m_ObjectHideFlags: 0

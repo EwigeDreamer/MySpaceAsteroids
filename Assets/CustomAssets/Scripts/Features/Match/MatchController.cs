@@ -12,6 +12,9 @@ public class MatchController : MonoSingleton<MatchController>
 
     LevelPreset preset;
 
+    int killCount = 0;
+    int destroyCount = 0;
+
     protected override void OnValidate()
     {
         base.OnValidate();
@@ -27,6 +30,7 @@ public class MatchController : MonoSingleton<MatchController>
             yield return CorouWaiter.WaitFor(() => PlayerController.I != null);
             yield return CorouWaiter.WaitFor(() => UserHUDController.I != null);
             PlayerController.I.Player.Health.OnDamage += (_, hp) => UserHUDController.I.SetHp(hp);
+            PlayerController.I.Player.Health.OnDead += StopMatch;
 
             var waitSecond = new WaitForSeconds(1f);
             int counter = 3;
@@ -48,8 +52,20 @@ public class MatchController : MonoSingleton<MatchController>
                 {
                     enemy.OnCollide -= Damage;
                     var health = c.collider.GetComponentInParent<PlayerHealth>();
-                    if (health == null) return;
-                    health.SetDamage(1, enemy.GO);
+                    if (health != null) health.SetDamage(1, enemy.GO);
+                }
+                enemy.OnDeadByPlayer += Kill;
+                void Kill(Enemy e)
+                {
+                    enemy.OnDeadByPlayer -= Kill;
+                    ++this.killCount;
+                }
+                enemy.OnDestroyEvent += Destroy;
+                void Destroy(Enemy e)
+                {
+                    enemy.OnDestroyEvent -= Destroy;
+                    ++this.destroyCount;
+                    if (this.destroyCount == this.preset.count) StopMatch();
                 }
                 yield return waitSpawn;
             }
@@ -58,6 +74,18 @@ public class MatchController : MonoSingleton<MatchController>
 
     public void StopMatch()
     {
+        bool isWin = !PlayerController.I.Player.Health.Hp.IsZero;
+        bool allEnemies = this.killCount == this.preset.count;
+        bool noDamage = PlayerController.I.Player.Health.Hp.IsMax;
 
+        var progress = LevelProgressData.GetProgress(this.preset.id);
+        progress.complete |= isWin;
+        progress.allEnemies |= allEnemies;
+        progress.noDamage |= noDamage;
+
+        var popup = PopupManager.OpenPopup<EndLevelPopup>();
+        popup.SetWindow(isWin);
+        if (isWin) popup.SetStars(1 + (allEnemies ? 1 : 0) + (noDamage ? 1 : 0));
+        popup.OnRemoving += GameManager.StopLevel;
     }
 }

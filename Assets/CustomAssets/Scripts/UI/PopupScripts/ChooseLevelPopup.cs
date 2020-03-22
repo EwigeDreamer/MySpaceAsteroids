@@ -30,7 +30,9 @@ public class ChooseLevelPopup : PopupBase
             cell.GO.SetActive(true);
             cell.Name.text = $"Level {id + 1}";
             cell.SetStars(progress.Stars);
-            cell.StartBtn.onClick.AddListener(() => 
+            bool active = id == 0 || LevelProgressData.GetProgress(id - 1).complete;
+            cell.SetActive(active);
+            if (active) cell.StartBtn.onClick.AddListener(() => 
             {
                 var popup = PopupManager.OpenPopup<StartLevelPopup>();
                 popup.SetDescription($"Level {id + 1}\nasteroids: {preset.count}\ntime: {preset.duration}");

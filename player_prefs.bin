@@ -10,7 +10,7 @@
         },
         {
             "key": "level_progress_data",
-            "value": "{\"levels\":[{\"id\":0,\"complete\":false,\"noDamage\":false,\"allEnemies\":false},{\"id\":1,\"complete\":false,\"noDamage\":false,\"allEnemies\":false},{\"id\":2,\"complete\":false,\"noDamage\":false,\"allEnemies\":false},{\"id\":3,\"complete\":false,\"noDamage\":false,\"allEnemies\":false}]}"
+            "value": "{\"levels\":[{\"id\":0,\"complete\":true,\"noDamage\":false,\"allEnemies\":false},{\"id\":1,\"complete\":false,\"noDamage\":false,\"allEnemies\":false},{\"id\":2,\"complete\":false,\"noDamage\":false,\"allEnemies\":false},{\"id\":3,\"complete\":false,\"noDamage\":false,\"allEnemies\":false}]}"
         },
         {
             "key": "level_preset_data",

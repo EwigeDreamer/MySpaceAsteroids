@@ -11,6 +11,7 @@ public class Enemy : MonoValidate, IPooledComponent
     [SerializeField] PlayerHealth health;
 
     public event Action<Enemy, Collision> OnCollide = delegate { };
+    public event Action<Enemy> OnDeadByPlayer = delegate { };
     public event Action<Enemy> OnDestroyEvent = delegate { };
 
     public Action deactive = null;
@@ -29,7 +30,7 @@ public class Enemy : MonoValidate, IPooledComponent
 
     private void Awake()
     {
-        this.health.OnDead += Remove;
+        this.health.OnDead += () => { OnDeadByPlayer(this); Remove(); } ;
     }
 
     public void SetVelocity(Vector3 value) => rb.velocity = value;

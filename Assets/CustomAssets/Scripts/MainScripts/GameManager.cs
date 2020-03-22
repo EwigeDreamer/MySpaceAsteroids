@@ -24,7 +24,6 @@ public static class GameManager
     {
         Debug.LogWarning($"STOP LEVEL: {_currentLevelId}");
         PauseManager.PauseEnabled = false;
-        MatchController.I.StopMatch();
         SceneLoadingManager.LoadMenu();
     }
 }
